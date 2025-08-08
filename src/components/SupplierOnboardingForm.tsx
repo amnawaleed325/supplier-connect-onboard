@@ -169,18 +169,36 @@ const SupplierOnboardingForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background py-4 px-4">
-      <div className="max-w-2xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <Check className="w-5 h-5 text-primary-foreground" />
+    <div className="min-h-screen bg-background">
+      {/* Professional Gradient Header */}
+      <div className="brand-gradient-header text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              Supplier Registration
+            </h1>
+            <p className="text-lg md:text-xl opacity-95 mb-8">
+              Join our professional network and start selling your products to thousands of customers
+            </p>
+            <div className="flex items-center justify-center gap-4 text-sm opacity-90">
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4" />
+                <span>Fast Approval</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4" />
+                <span>No Hidden Fees</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4" />
+                <span>24/7 Support</span>
+              </div>
             </div>
-            <h1 className="text-2xl font-bold text-secondary">Markaz Supplier</h1>
           </div>
-          <p className="text-muted-foreground">Join Pakistan's fastest growing marketplace</p>
         </div>
+      </div>
+
+      <div className="max-w-2xl mx-auto px-4 -mt-8 relative z-10 pb-8">
 
         {/* Progress Indicator */}
         <Card className="form-card mb-6">

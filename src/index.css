@@ -8,52 +8,58 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Clean white, blue, green theme */
+    /* Professional brand color palette */
     --background: 0 0% 100%;
-    --foreground: 220 26% 14%;
+    --foreground: 218 75% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 26% 14%;
+    --card-foreground: 218 75% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 26% 14%;
+    --popover-foreground: 218 75% 15%;
 
-    /* Markaz green primary */
-    --primary: 145 63% 42%;
+    /* Primary brand teal #2b987c */
+    --primary: 164 55% 38%;
     --primary-foreground: 0 0% 100%;
 
-    /* Blue secondary */
-    --secondary: 220 26% 14%;
+    /* Secondary brand blue #1c6e9d */
+    --secondary: 202 69% 36%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Light gray muted */
-    --muted: 0 0% 96%;
-    --muted-foreground: 220 8% 46%;
+    /* Light muted backgrounds */
+    --muted: 210 20% 96%;
+    --muted-foreground: 218 25% 45%;
 
-    /* Light green accent */
-    --accent: 145 25% 95%;
-    --accent-foreground: 145 63% 42%;
+    /* Bright green accent #48e83f */
+    --accent: 116 82% 67%;
+    --accent-foreground: 218 75% 15%;
 
     /* Red destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Light borders */
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 145 63% 42%;
+    /* Subtle borders */
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 164 55% 38%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Brand gradient colors */
+    --brand-teal: 164 55% 38%;
+    --brand-blue: 202 69% 36%;
+    --brand-dark-blue: 218 75% 15%;
+    --brand-bright-green: 116 82% 67%;
 
     /* Sidebar colors */
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 220 26% 14%;
-    --sidebar-primary: 145 63% 42%;
+    --sidebar-foreground: 218 75% 15%;
+    --sidebar-primary: 164 55% 38%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 96%;
-    --sidebar-accent-foreground: 220 26% 14%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 145 63% 42%;
+    --sidebar-accent: 210 20% 96%;
+    --sidebar-accent-foreground: 218 75% 15%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 164 55% 38%;
   }
 
   .dark {
@@ -113,9 +119,17 @@ All colors MUST be HSL.
     @apply bg-background text-foreground font-sans;
   }
 
-  /* Custom Markaz design tokens */
-  .markaz-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(145 63% 52%) 100%);
+  /* Custom brand design tokens */
+  .brand-gradient {
+    background: linear-gradient(135deg, hsl(var(--brand-teal)) 0%, hsl(var(--brand-blue)) 50%, hsl(var(--brand-dark-blue)) 100%);
+  }
+
+  .brand-gradient-header {
+    background: linear-gradient(135deg, hsl(var(--brand-teal)) 0%, hsl(var(--brand-blue)) 100%);
+  }
+
+  .brand-accent-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
   }
 
   .form-card {

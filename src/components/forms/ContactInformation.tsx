@@ -15,16 +15,17 @@ interface Props {
   onNext: () => void;
 }
 
-const pakistaniCities = [
-  'Islamabad', 'Karachi', 'Lahore', 'Faisalabad', 'Rawalpindi', 'Multan', 'Gujranwala', 
-  'Hyderabad', 'Peshawar', 'Quetta', 'Sialkot', 'Sargodha', 'Bahawalpur', 'Sukkur',
-  'Jhang', 'Shekhupura', 'Larkana', 'Gujrat', 'Mardan', 'Kasur', 'Rahim Yar Khan',
-  'Sahiwal', 'Okara', 'Wah Cantonment', 'Dera Ghazi Khan', 'Mirpur Khas', 'Nawabshah',
-  'Mingora', 'Chiniot', 'Kamoke', 'Mandi Burewala', 'Jhelum', 'Sadiqabad', 'Jacobabad',
-  'Shikarpur', 'Khanewal', 'Hafizabad', 'Kohat', 'Muzaffargarh', 'Khanpur', 'Gojra',
-  'Bahawalnagar', 'Muridke', 'Pakpattan', 'Abottabad', 'Tando Adam', 'Jaranwala',
-  'Khairpur', 'Chishtian', 'Daska', 'Mandi Bahauddin', 'Ahmadpur East', 'Kamalia',
-  'Khushab', 'Wazirabad', 'Lodhran', 'Narowal', 'Chakwal', 'Attock', 'Mianwali'
+const CITIES = [
+  'Lahore',
+  'Karachi', 
+  'Faisalabad',
+  'Rawalpindi',
+  'Peshawar',
+  'Islamabad',
+  'Multan',
+  'Gujrat',
+  'Gujranwala',
+  'Sialkot'
 ];
 
 const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
@@ -280,7 +281,7 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
                 <SelectValue placeholder="Select your city" />
               </SelectTrigger>
               <SelectContent>
-                {pakistaniCities.map((city) => (
+                {CITIES.map((city) => (
                   <SelectItem key={city} value={city}>
                     {city}
                   </SelectItem>
