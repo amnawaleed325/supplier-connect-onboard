@@ -47,9 +47,16 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
 
       case 'businessName':
         if (!value.trim()) {
-          newErrors.businessName = 'Business name is required';
+          newErrors.businessName = 'Shop name is required';
         } else {
-          delete newErrors.businessName;
+          const specialChars = /[$%&#@*()^!~`;:"'\-_+=|/?><]/;
+          if (specialChars.test(value)) {
+            newErrors.businessName = 'Special characters are not allowed';
+          } else if (value.length > 25) {
+            newErrors.businessName = 'Maximum 25 characters allowed';
+          } else {
+            delete newErrors.businessName;
+          }
         }
         break;
 
@@ -98,11 +105,35 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
         }
         break;
 
-      case 'pickupAddress':
+      case 'shopNumber':
         if (!value.trim()) {
-          newErrors.pickupAddress = 'Pickup address is required';
+          newErrors.shopNumber = 'Shop number is required';
         } else {
-          delete newErrors.pickupAddress;
+          delete newErrors.shopNumber;
+        }
+        break;
+
+      case 'streetName':
+        if (!value.trim()) {
+          newErrors.streetName = 'Street name is required';
+        } else {
+          delete newErrors.streetName;
+        }
+        break;
+
+      case 'area':
+        if (!value.trim()) {
+          newErrors.area = 'Area is required';
+        } else {
+          delete newErrors.area;
+        }
+        break;
+
+      case 'landmark':
+        if (!value.trim()) {
+          newErrors.landmark = 'Landmark is required';
+        } else {
+          delete newErrors.landmark;
         }
         break;
 
@@ -137,9 +168,10 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
   };
 
   const handleAddressToggle = (checked: boolean) => {
+    const pickupAddress = `${data.shopNumber || ''}, ${data.streetName || ''}, ${data.area || ''}, ${data.landmark || ''}`.replace(/^,+|,+$/g, '').replace(/,+/g, ', ');
     updateData({ 
       sameAsPickup: checked,
-      returnAddress: checked ? data.pickupAddress : ''
+      returnAddress: checked ? pickupAddress : ''
     });
     if (checked) {
       const newErrors = { ...errors };
@@ -149,7 +181,7 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
   };
 
   const validateStep = () => {
-    const fields = ['fullName', 'businessName', 'phoneNumber', 'email', 'city', 'pickupAddress'];
+    const fields = ['fullName', 'businessName', 'phoneNumber', 'email', 'city', 'shopNumber', 'streetName', 'area', 'landmark'];
     if (!data.sameAsPhone) fields.push('whatsappNumber');
     if (!data.sameAsPickup) fields.push('returnAddress');
 
@@ -172,7 +204,22 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
   return (
     <Card className="form-card">
       <div className="form-section">
-        <h2 className="text-xl font-semibold mb-6">Contact Information</h2>
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold text-secondary mb-2">Become Markaz Supplier</h1>
+          <h2 className="text-xl text-muted-foreground mb-2">Create Your store with Markaz</h2>
+          <p className="text-muted-foreground mb-6">Join our professional network and start selling your products to thousands of customers</p>
+          
+          <div className="text-left text-sm text-muted-foreground space-y-1 mb-6 bg-accent/10 p-4 rounded-lg">
+            <div className="flex items-start gap-2">
+              <span className="text-destructive">⚠️</span>
+              <span>All information provided must be correct. Incorrect or false details will result in rejection of your application.</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-destructive">⚠️</span>
+              <span>Approval is subject to verification by the Markaz team.</span>
+            </div>
+          </div>
+        </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -193,12 +240,13 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="businessName">Business Name *</Label>
+            <Label htmlFor="businessName">Markaz Shop Name *</Label>
             <Input
               id="businessName"
               value={data.businessName}
               onChange={(e) => handleInputChange('businessName', e.target.value)}
-              placeholder="Enter business name"
+              placeholder="Enter shop name (max 25 chars)"
+              maxLength={25}
               className={errors.businessName ? 'border-destructive' : ''}
             />
             {errors.businessName && (
@@ -297,29 +345,87 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
           </div>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="pickupAddress">Pickup Address *</Label>
-          <Textarea
-            id="pickupAddress"
-            value={data.pickupAddress}
-            onChange={(e) => handleInputChange('pickupAddress', e.target.value)}
-            placeholder="Enter your complete pickup address"
-            rows={3}
-            className={errors.pickupAddress ? 'border-destructive' : ''}
-          />
-          {errors.pickupAddress && (
-            <div className="error-message">
-              <AlertCircle className="w-4 h-4" />
-              {errors.pickupAddress}
+        {/* Pickup Address Section */}
+        <div className="space-y-4">
+          <Label className="text-lg font-semibold">Pickup Address *</Label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="shopNumber">Shop Number / House Number *</Label>
+              <Input
+                id="shopNumber"
+                value={data.shopNumber || ''}
+                onChange={(e) => handleInputChange('shopNumber', e.target.value)}
+                placeholder="Shop/House number"
+                className={errors.shopNumber ? 'border-destructive' : ''}
+              />
+              {errors.shopNumber && (
+                <div className="error-message">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.shopNumber}
+                </div>
+              )}
             </div>
-          )}
+
+            <div className="space-y-2">
+              <Label htmlFor="streetName">Street Number / Street Name *</Label>
+              <Input
+                id="streetName"
+                value={data.streetName || ''}
+                onChange={(e) => handleInputChange('streetName', e.target.value)}
+                placeholder="Street name"
+                className={errors.streetName ? 'border-destructive' : ''}
+              />
+              {errors.streetName && (
+                <div className="error-message">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.streetName}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="area">Area / Locality *</Label>
+              <Input
+                id="area"
+                value={data.area || ''}
+                onChange={(e) => handleInputChange('area', e.target.value)}
+                placeholder="Area/Locality"
+                className={errors.area ? 'border-destructive' : ''}
+              />
+              {errors.area && (
+                <div className="error-message">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.area}
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="landmark">Famous Nearby Location / Landmark *</Label>
+              <Input
+                id="landmark"
+                value={data.landmark || ''}
+                onChange={(e) => handleInputChange('landmark', e.target.value)}
+                placeholder="Nearby landmark"
+                className={errors.landmark ? 'border-destructive' : ''}
+              />
+              {errors.landmark && (
+                <div className="error-message">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.landmark}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="returnAddress">Return Address *</Label>
           <Textarea
             id="returnAddress"
-            value={data.sameAsPickup ? data.pickupAddress : data.returnAddress}
+            value={data.sameAsPickup ? `${data.shopNumber || ''}, ${data.streetName || ''}, ${data.area || ''}, ${data.landmark || ''}`.replace(/^,+|,+$/g, '').replace(/,+/g, ', ') : data.returnAddress}
             onChange={(e) => handleInputChange('returnAddress', e.target.value)}
             placeholder="Enter your return address"
             rows={3}

@@ -68,15 +68,31 @@ const BusinessVerification: React.FC<Props> = ({ data, updateData, onSubmit, onB
         break;
 
       case 'ntnNumber':
-        if (value && value !== '') {
+        if (!value || value === '') {
+          newErrors.ntnNumber = 'NTN number is required';
+        } else {
           const ntnRegex = /^[0-9A-Za-z]{7}$/;
           if (!ntnRegex.test(value as string)) {
             newErrors.ntnNumber = 'NTN must be 7 characters (numeric or alphanumeric)';
           } else {
             delete newErrors.ntnNumber;
           }
+        }
+        break;
+
+      case 'chequeImage':
+        if (!value) {
+          newErrors.chequeImage = 'Cheque image is required';
         } else {
-          delete newErrors.ntnNumber;
+          delete newErrors.chequeImage;
+        }
+        break;
+
+      case 'taxCertificate':
+        if (!value) {
+          newErrors.taxCertificate = 'TAX certificate is required';
+        } else {
+          delete newErrors.taxCertificate;
         }
         break;
     }
@@ -96,14 +112,14 @@ const BusinessVerification: React.FC<Props> = ({ data, updateData, onSubmit, onB
       // Validate file type based on field
       let allowedTypes: string[] = [];
       
-      if (name === 'fbrCertificate') {
+      if (name === 'taxCertificate') {
         allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
       } else {
         allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
       }
 
       if (!allowedTypes.includes(file.type)) {
-        const fileTypes = name === 'fbrCertificate' ? 'PDF or image' : 'JPG or PNG';
+        const fileTypes = name === 'taxCertificate' ? 'PDF or image' : 'JPG or PNG';
         setErrors(prev => ({ ...prev, [name]: `Please upload a ${fileTypes} file` }));
         return;
       }
@@ -120,8 +136,7 @@ const BusinessVerification: React.FC<Props> = ({ data, updateData, onSubmit, onB
   };
 
   const validateStep = () => {
-    const requiredFields = ['cnicNumber', 'cnicFront', 'cnicBack', 'bankIban', 'bankAccountTitle'];
-    const optionalFields = ['ntnNumber'];
+    const requiredFields = ['cnicNumber', 'cnicFront', 'cnicBack', 'bankIban', 'bankAccountTitle', 'ntnNumber', 'chequeImage', 'taxCertificate'];
 
     let isValid = true;
 
@@ -130,16 +145,6 @@ const BusinessVerification: React.FC<Props> = ({ data, updateData, onSubmit, onB
       let value = data[field as keyof FormData];
       if (!validateField(field, value as string | File)) {
         isValid = false;
-      }
-    });
-
-    // Validate optional fields if they have values
-    optionalFields.forEach(field => {
-      let value = data[field as keyof FormData] as string;
-      if (value && value.trim() !== '') {
-        if (!validateField(field, value)) {
-          isValid = false;
-        }
       }
     });
 
@@ -282,7 +287,7 @@ const BusinessVerification: React.FC<Props> = ({ data, updateData, onSubmit, onB
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="ntnNumber">NTN Number (Optional)</Label>
+          <Label htmlFor="ntnNumber">NTN Number *</Label>
           <Input
             id="ntnNumber"
             value={data.ntnNumber}
@@ -302,17 +307,31 @@ const BusinessVerification: React.FC<Props> = ({ data, updateData, onSubmit, onB
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <FileUploadField
-            name="fbrCertificate"
-            label="FBR Certificate (Optional)"
-            accept=".pdf,.jpg,.jpeg,.png"
-          />
-          <FileUploadField
-            name="businessLogo"
-            label="Business Logo (Optional)"
-            accept=".jpg,.jpeg,.png"
-          />
+        <FileUploadField
+          name="chequeImage"
+          label="Cheque Image Upload"
+          required
+          accept=".jpg,.jpeg,.png"
+        />
+
+        <FileUploadField
+          name="taxCertificate"
+          label="TAX Payer Registration Certificate Upload"
+          required
+          accept=".pdf,.jpg,.jpeg,.png"
+        />
+
+        <FileUploadField
+          name="businessLogo"
+          label="Business Logo (Optional)"
+          accept=".jpg,.jpeg,.png"
+        />
+
+        {/* Pre-submission Notice */}
+        <div className="bg-accent/20 rounded-lg p-4 border border-accent/30">
+          <p className="text-sm text-secondary">
+            After submitting, you will be directed to our education modules page. You must pass a short MCQ quiz to qualify for activation.
+          </p>
         </div>
 
         <div className="flex justify-between pt-4">
@@ -327,7 +346,7 @@ const BusinessVerification: React.FC<Props> = ({ data, updateData, onSubmit, onB
               </>
             ) : (
               <>
-                Submit Application <Send className="w-4 h-4 ml-1" />
+                I'm Ready → Next Step <Send className="w-4 h-4 ml-1" />
               </>
             )}
           </Button>

@@ -58,12 +58,28 @@ const categories = [
   'Women Undergarments'
 ];
 
+const productCountOptions = [
+  'less-than-10',
+  '10-50',
+  '50-100',
+  '100-500',
+  'more-than-500'
+];
+
+const stockOptions = [
+  'less-than-10',
+  '10-50',
+  '50-100',
+  'more-than-100'
+];
+
 const priceRanges = [
-  '300–500',
-  '500–1000',
-  '1000–2000',
-  '2000–5000',
-  'More than 5000'
+  'less-than-300',
+  '300-500',
+  '500-1000',
+  '1000-2000',
+  '2000-5000',
+  'more-than-5000'
 ];
 
 const experienceOptions = [
@@ -103,20 +119,16 @@ const SupplierDetails: React.FC<Props> = ({ data, updateData, onNext, onBack }) 
         break;
 
       case 'productCount':
-        if (!value || value === '') {
+        if (!value) {
           newErrors.productCount = 'Product count is required';
-        } else if (isNaN(Number(value)) || Number(value) <= 0) {
-          newErrors.productCount = 'Please enter a valid number';
         } else {
           delete newErrors.productCount;
         }
         break;
 
       case 'stockPerProduct':
-        if (!value || value === '') {
+        if (!value) {
           newErrors.stockPerProduct = 'Stock per product is required';
-        } else if (isNaN(Number(value)) || Number(value) < 100) {
-          newErrors.stockPerProduct = 'Stock must be 100 or more to proceed';
         } else {
           delete newErrors.stockPerProduct;
         }
@@ -209,6 +221,24 @@ const SupplierDetails: React.FC<Props> = ({ data, updateData, onNext, onBack }) 
     }
   };
 
+  const getDisplayValue = (option: string) => {
+    switch (option) {
+      case 'less-than-10': return 'Less than 10';
+      case '10-50': return '10-50';
+      case '50-100': return '50-100';
+      case '100-500': return '100-500';
+      case 'more-than-500': return 'More than 500';
+      case 'more-than-100': return 'More than 100';
+      case 'less-than-300': return 'Less than 300';
+      case '300-500': return '300–500';
+      case '500-1000': return '500–1000';
+      case '1000-2000': return '1000–2000';
+      case '2000-5000': return '2000–5000';
+      case 'more-than-5000': return 'More than 5000';
+      default: return option;
+    }
+  };
+
   return (
     <Card className="form-card">
       <div className="form-section">
@@ -279,15 +309,18 @@ const SupplierDetails: React.FC<Props> = ({ data, updateData, onNext, onBack }) 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="productCount">Apkay paas kitni products hain? *</Label>
-            <Input
-              id="productCount"
-              type="number"
-              value={data.productCount}
-              onChange={(e) => handleInputChange('productCount', e.target.value)}
-              placeholder="Enter number of products"
-              min="1"
-              className={errors.productCount ? 'border-destructive' : ''}
-            />
+            <Select value={data.productCount} onValueChange={(value) => handleInputChange('productCount', value)}>
+              <SelectTrigger className={errors.productCount ? 'border-destructive' : ''}>
+                <SelectValue placeholder="Select product count" />
+              </SelectTrigger>
+              <SelectContent>
+                {productCountOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {getDisplayValue(option)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             {errors.productCount && (
               <div className="error-message">
                 <AlertCircle className="w-4 h-4" />
@@ -298,15 +331,18 @@ const SupplierDetails: React.FC<Props> = ({ data, updateData, onNext, onBack }) 
 
           <div className="space-y-2">
             <Label htmlFor="stockPerProduct">Apkay paas aik product ka kitna stock mojood hai? *</Label>
-            <Input
-              id="stockPerProduct"
-              type="number"
-              value={data.stockPerProduct}
-              onChange={(e) => handleInputChange('stockPerProduct', e.target.value)}
-              placeholder="Minimum 100 required"
-              min="100"
-              className={errors.stockPerProduct ? 'border-destructive' : ''}
-            />
+            <Select value={data.stockPerProduct} onValueChange={(value) => handleInputChange('stockPerProduct', value)}>
+              <SelectTrigger className={errors.stockPerProduct ? 'border-destructive' : ''}>
+                <SelectValue placeholder="Select stock level" />
+              </SelectTrigger>
+              <SelectContent>
+                {stockOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {getDisplayValue(option)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             {errors.stockPerProduct && (
               <div className="error-message">
                 <AlertCircle className="w-4 h-4" />
@@ -325,7 +361,7 @@ const SupplierDetails: React.FC<Props> = ({ data, updateData, onNext, onBack }) 
             <SelectContent>
               {priceRanges.map((range) => (
                 <SelectItem key={range} value={range}>
-                  PKR {range}
+                  PKR {getDisplayValue(range)}
                 </SelectItem>
               ))}
             </SelectContent>

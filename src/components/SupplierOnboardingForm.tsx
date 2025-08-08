@@ -16,6 +16,10 @@ export interface FormData {
   sameAsPhone: boolean;
   email: string;
   city: string;
+  shopNumber?: string;
+  streetName?: string;
+  area?: string;
+  landmark?: string;
   pickupAddress: string;
   returnAddress: string;
   sameAsPickup: boolean;
@@ -39,7 +43,8 @@ export interface FormData {
   bankIban: string;
   bankAccountTitle: string;
   ntnNumber: string;
-  fbrCertificate?: File;
+  chequeImage?: File;
+  taxCertificate?: File;
   businessLogo?: File;
 }
 
