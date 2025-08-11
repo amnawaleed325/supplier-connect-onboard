@@ -174,9 +174,27 @@ const SupplierOnboardingForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat relative"
+         style={{
+           backgroundImage: `url('data:image/svg+xml;base64,${btoa(`
+             <svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <defs>
+                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                   <stop offset="0%" style="stop-color:#2b987c;stop-opacity:1" />
+                   <stop offset="50%" style="stop-color:#1c6e9d;stop-opacity:1" />
+                   <stop offset="100%" style="stop-color:#0e2869;stop-opacity:1" />
+                 </linearGradient>
+               </defs>
+               <rect width="1920" height="1080" fill="url(#grad1)"/>
+             </svg>
+           `)}')`
+         }}>
+      
+      {/* Semi-transparent overlay for readability */}
+      <div className="absolute inset-0 bg-white/90"></div>
+      
       {/* Professional Gradient Header */}
-      <div className="brand-gradient-header text-white py-16">
+      <div className="relative z-10 brand-gradient-header text-white py-16">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -204,27 +222,6 @@ const SupplierOnboardingForm = () => {
       </div>
 
       <div className="max-w-2xl mx-auto px-4 -mt-8 relative z-10 pb-8">
-        
-        {/* Disclaimer */}
-        <Card className="form-card mb-6">
-          <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400">
-            <div className="flex">
-              <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <div className="ml-3">
-                <p className="text-sm text-yellow-700">
-                  <strong>Important:</strong> All information provided must be correct. Incorrect or false details will result in rejection of your application.
-                </p>
-                <p className="text-sm text-yellow-700 mt-1">
-                  Approval is subject to verification by the Markaz team.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Card>
 
         {/* Progress Indicator */}
         <Card className="form-card mb-6">
