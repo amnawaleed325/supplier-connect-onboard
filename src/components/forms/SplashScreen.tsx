@@ -26,12 +26,13 @@ const SplashScreen: React.FC<Props> = ({ onStart }) => {
       {/* Dark gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
       
-      {/* Lady PNG placeholder - positioned bottom-right */}
-      <div className="absolute bottom-0 right-0 w-1/4 h-1/4 bg-white/10 rounded-tl-3xl flex items-center justify-center">
-        <div className="text-white/60 text-center">
-          <div className="w-16 h-16 bg-white/20 rounded-full mx-auto mb-2"></div>
-          <p className="text-sm">Lady PNG<br/>Placeholder</p>
-        </div>
+      {/* Lady PNG - positioned bottom-right */}
+      <div className="absolute bottom-0 right-0 w-1/3 md:w-1/4 h-auto">
+        <img 
+          src="/lovable-uploads/9b4732a0-1f01-491f-884d-51c857f6c82c.png"
+          alt="Markaz representative" 
+          className="w-full h-auto object-contain"
+        />
       </div>
       
       {/* Main content */}

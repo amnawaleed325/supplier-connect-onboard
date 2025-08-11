@@ -180,7 +180,7 @@ const SupplierOnboardingForm = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Supplier Registration
+              Create Your store with Markaz
             </h1>
             <p className="text-lg md:text-xl opacity-95 mb-8">
               Join our professional network and start selling your products to thousands of customers
@@ -204,6 +204,27 @@ const SupplierOnboardingForm = () => {
       </div>
 
       <div className="max-w-2xl mx-auto px-4 -mt-8 relative z-10 pb-8">
+        
+        {/* Disclaimer */}
+        <Card className="form-card mb-6">
+          <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm text-yellow-700">
+                  <strong>Important:</strong> All information provided must be correct. Incorrect or false details will result in rejection of your application.
+                </p>
+                <p className="text-sm text-yellow-700 mt-1">
+                  Approval is subject to verification by the Markaz team.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Card>
 
         {/* Progress Indicator */}
         <Card className="form-card mb-6">
