@@ -49,9 +49,9 @@ export interface FormData {
 }
 
 const STEPS = [
-  { title: 'Contact Information', subtitle: 'Basic contact details' },
-  { title: 'Supplier Details', subtitle: 'Business & product info' },
-  { title: 'Verification', subtitle: 'Document verification' }
+  { title: 'Contact Information' },
+  { title: 'Supplier Details' },
+  { title: 'Verification' }
 ];
 
 const SupplierOnboardingForm = () => {
@@ -227,7 +227,6 @@ const SupplierOnboardingForm = () => {
                   </div>
                   <div className="text-center mt-2 hidden sm:block">
                     <p className="text-sm font-medium">{step.title}</p>
-                    <p className="text-xs text-muted-foreground">{step.subtitle}</p>
                   </div>
                 </div>
               ))}
