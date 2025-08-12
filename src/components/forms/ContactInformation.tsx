@@ -204,11 +204,6 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
   return (
     <Card className="form-card">
       <div className="form-section">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-secondary mb-2">Become Markaz Supplier</h1>
-          <h2 className="text-xl text-muted-foreground mb-2">Create Your store with Markaz</h2>
-          <p className="text-muted-foreground mb-6">Join our professional network and start selling your products to thousands of customers</p>
-          
           <div className="text-left text-sm text-muted-foreground space-y-1 mb-6 bg-accent/10 p-4 rounded-lg">
             <div className="flex items-start gap-2">
               <span className="text-destructive">⚠️</span>
@@ -219,7 +214,6 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
               <span>Approval is subject to verification by the Markaz team.</span>
             </div>
           </div>
-        </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
