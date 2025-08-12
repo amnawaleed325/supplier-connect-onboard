@@ -151,7 +151,21 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
   };
 
   const handleInputChange = (name: string, value: string) => {
-    updateData({ [name]: value });
+    const updates: Partial<FormData> = { [name]: value };
+    
+    // If updating address fields, also update pickupAddress
+    if (['shopNumber', 'streetName', 'area', 'landmark'].includes(name)) {
+      const currentData = { ...data, [name]: value };
+      const pickupAddress = [
+        currentData.shopNumber,
+        currentData.streetName,
+        currentData.area,
+        currentData.landmark
+      ].filter(Boolean).join(', ');
+      updates.pickupAddress = pickupAddress;
+    }
+    
+    updateData(updates);
     validateField(name, value);
   };
 

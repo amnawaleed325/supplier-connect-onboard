@@ -64,6 +64,10 @@ const SupplierOnboardingForm = () => {
     sameAsPhone: true,
     email: '',
     city: '',
+    shopNumber: '',
+    streetName: '',
+    area: '',
+    landmark: '',
     pickupAddress: '',
     returnAddress: '',
     sameAsPickup: true,
@@ -85,6 +89,7 @@ const SupplierOnboardingForm = () => {
 
   const updateFormData = (data: Partial<FormData>) => {
     setFormData(prev => ({ ...prev, ...data }));
+    console.log('Form data updated:', { ...formData, ...data });
   };
 
   const nextStep = () => {
