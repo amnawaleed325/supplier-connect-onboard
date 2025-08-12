@@ -12,6 +12,13 @@ const SplashScreen: React.FC<Props> = ({ onStart }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const validatePassword = (password: string) => {
+    const hasNumber = /\d/.test(password);
+    const hasLetter = /[a-zA-Z]/.test(password);
+    const isLongEnough = password.length >= 8;
+    return hasNumber && hasLetter && isLongEnough;
+  };
+
   const handleSignUp = () => {
     if (password !== confirmPassword) {
       alert('Passwords do not match');
@@ -19,6 +26,10 @@ const SplashScreen: React.FC<Props> = ({ onStart }) => {
     }
     if (!email || !password) {
       alert('Please fill in all fields');
+      return;
+    }
+    if (!validatePassword(password)) {
+      alert('Password must be at least 8 characters long and contain both letters and numbers');
       return;
     }
     onStart();
