@@ -193,12 +193,24 @@ const SupplierOnboardingForm = () => {
       {/* Semi-transparent overlay for readability */}
       <div className="absolute inset-0 bg-white/90"></div>
       
-      {/* Spacer for top margin */}
-      <div className="relative z-10 py-8"></div>
+      
+      {/* Header */}
+      <div className="relative z-10">
+        <div className="w-full py-8 px-4" style={{
+          background: 'linear-gradient(135deg, #2b987c 0%, #1c6e9d 50%, #0e2869 100%)'
+        }}>
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+              Create Your store with Markaz
+            </h1>
+            <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
+              Join our professional network and start selling your products to thousands of customers
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <div className="max-w-2xl mx-auto px-4 -mt-8 relative z-10 pb-8">
-
-        {/* Progress Indicator */}
+      <div className="max-w-2xl mx-auto px-4 py-8 relative z-10 pb-8">{/* Progress Indicator */}
         <Card className="form-card mb-6">
           <div className="p-6">
             <div className="flex items-center justify-between mb-4">
