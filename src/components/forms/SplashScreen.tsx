@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 interface Props {
   onStart: () => void;
 }
 
 const SplashScreen: React.FC<Props> = ({ onStart }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleSignUp = () => {
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+    if (!email || !password) {
+      alert('Please fill in all fields');
+      return;
+    }
+    onStart();
+  };
+
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat relative flex"
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat relative flex flex-col md:flex-row"
          style={{
            backgroundImage: `url('data:image/svg+xml;base64,${btoa(`
              <svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,8 +41,8 @@ const SplashScreen: React.FC<Props> = ({ onStart }) => {
            `)}')`
          }}>
       
-      {/* Lady PNG - positioned left side, full screen */}
-      <div className="w-1/2 h-screen relative">
+      {/* Lady PNG - positioned left side */}
+      <div className="w-full md:w-1/2 h-64 md:h-screen relative order-2 md:order-1">
         <img 
           src="/lovable-uploads/9b4732a0-1f01-491f-884d-51c857f6c82c.png"
           alt="Markaz representative" 
@@ -32,26 +50,71 @@ const SplashScreen: React.FC<Props> = ({ onStart }) => {
         />
       </div>
       
-      {/* Right side content */}
-      <div className="w-1/2 h-screen flex items-center justify-center relative z-10 pr-16">
-        <div className="text-center text-white px-8 max-w-xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-10 leading-tight">
+      {/* Right side content - Sign Up Form */}
+      <div className="w-full md:w-1/2 min-h-screen flex items-center justify-center relative z-10 px-4 md:pr-16 py-8 order-1 md:order-2">
+        <div className="text-center text-white px-4 md:px-8 max-w-md w-full">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 leading-tight">
             Become a Markaz Seller 🚀
           </h1>
-          <p className="text-xl md:text-2xl opacity-90 mb-16 leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl opacity-90 mb-8 md:mb-12 leading-relaxed">
             Sell your products to thousands of customers with ease.
           </p>
           
+          {/* Sign Up Form */}
+          <div className="space-y-4 md:space-y-6 mb-8 md:mb-12">
+            <div className="text-left">
+              <Label htmlFor="email" className="text-white text-sm md:text-base font-medium mb-2 block">
+                Email Address
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="w-full bg-white/10 border-white/30 text-white placeholder:text-white/70 focus:border-white focus:ring-white/50 h-12 md:h-14 text-base"
+              />
+            </div>
+            
+            <div className="text-left">
+              <Label htmlFor="password" className="text-white text-sm md:text-base font-medium mb-2 block">
+                Create Password
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Create password"
+                className="w-full bg-white/10 border-white/30 text-white placeholder:text-white/70 focus:border-white focus:ring-white/50 h-12 md:h-14 text-base"
+              />
+            </div>
+            
+            <div className="text-left">
+              <Label htmlFor="confirmPassword" className="text-white text-sm md:text-base font-medium mb-2 block">
+                Confirm Password
+              </Label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Rewrite password"
+                className="w-full bg-white/10 border-white/30 text-white placeholder:text-white/70 focus:border-white focus:ring-white/50 h-12 md:h-14 text-base"
+              />
+            </div>
+          </div>
+          
           <Button 
-            onClick={onStart}
+            onClick={handleSignUp}
             size="lg"
-            className="bg-primary hover:bg-primary/90 px-20 py-10 text-2xl font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-white/30"
+            className="w-full bg-primary hover:bg-primary/90 px-8 py-4 md:py-6 text-lg md:text-xl font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-white/30"
             style={{ 
               color: '#ffffff',
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(255, 255, 255, 0.1)'
             }}
           >
-            Start Registration
+            Sign Up
           </Button>
         </div>
       </div>
