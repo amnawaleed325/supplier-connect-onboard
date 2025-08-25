@@ -62,20 +62,8 @@ const ThankYou: React.FC = () => {
               <p className="font-mono text-sm font-medium">MKZ-{Date.now().toString().slice(-8)}</p>
             </div>
 
-            {/* Contact Info */}
-            <div className="text-sm text-muted-foreground mb-6">
-              <p>For any queries, contact us:</p>
-              <p className="font-medium text-secondary">support@markaz.app</p>
-              <p className="font-medium text-secondary">+92 300 123 4567</p>
-            </div>
-
             {/* Action Buttons */}
             <div className="space-y-3">
-              <Button onClick={handleWhatsApp} className="w-full">
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Join WhatsApp Group
-              </Button>
-              
               <Button variant="outline" onClick={handleNewApplication} className="w-full">
                 <Home className="w-4 h-4 mr-2" />
                 Submit Another Application
