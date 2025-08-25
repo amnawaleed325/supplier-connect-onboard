@@ -16,46 +16,38 @@ interface Props {
 }
 
 const supplierTypes = [
-  'Manufacturer',
-  'Wholesaler', 
-  'Distributor',
-  'Retailer'
+  'Has Shop (Apni Shop hai)',
+  'Working from Home (Ghar sy kaam karty hain)',
+  'Deal from Factory (Factory sy supply karty hain)',
+  'Wholesaler (Wholesale ka kaam karty hain)'
 ];
 
 const categories = [
-  'Auto & Bike Accessories',
-  'Bags',
-  'Bedding',
-  'Books & Stationery',
-  'Brands',
-  'Cosmetics',
-  'Electronic Accessories',
-  'Electronics',
-  'Fashion Accessories',
-  'Festive Collection',
-  'Fitness',
-  'Home Decor',
-  'Home Essentials',
-  'Home Linen',
-  'Islamic Accessories',
-  'Jewellery',
-  'Kids Accessories',
-  'Kids Clothing',
-  'Kitchenware',
-  'Men\'s Shawls',
-  'Men\'s Stitched',
-  'Men\'s Undergarments',
-  'Men\'s Unstitched',
-  'Mother & Baby',
-  'Other',
-  'Perfumes',
-  'Shoes',
-  'Unisex Clothing',
-  'Women\'s Handbags',
-  'Women\'s Shawls',
-  'Women\'s Stitched',
   'Women\'s Unstitched',
-  'Women Undergarments'
+  'Women\'s Stitched',
+  'Men\'s Unstitched',
+  'Men\'s Stitched',
+  'Women\'s Shawls',
+  'Men\'s Shawls',
+  'Kids Clothing',
+  'Women\'s Handbags',
+  'Jewellery',
+  'Kitchenware',
+  'Cosmetics',
+  'Auto & Bike Accessories',
+  'Bedding',
+  'Women Undergarments',
+  'Islamic Accessories',
+  'Electronics',
+  'Bags',
+  'Home Decor',
+  'Fashion Accessories',
+  'Shoes',
+  'Men\'s Undergarments',
+  'Kids Accessories',
+  'Perfumes',
+  'Mother & Baby',
+  'Books & Stationery'
 ];
 
 const productCountOptions = [
@@ -134,13 +126,6 @@ const SupplierDetails: React.FC<Props> = ({ data, updateData, onNext, onBack }) 
         }
         break;
 
-      case 'priceRange':
-        if (!value) {
-          newErrors.priceRange = 'Price range is required';
-        } else {
-          delete newErrors.priceRange;
-        }
-        break;
 
       case 'listingType':
         if (!value) {
@@ -202,7 +187,7 @@ const SupplierDetails: React.FC<Props> = ({ data, updateData, onNext, onBack }) 
   const validateStep = () => {
     const requiredFields = [
       'supplierType', 'mainCategory', 'productCount', 'stockPerProduct', 
-      'priceRange', 'listingType', 'experience', 'hearAbout'
+      'listingType', 'experience', 'hearAbout'
     ];
 
     let isValid = true;
@@ -350,28 +335,6 @@ const SupplierDetails: React.FC<Props> = ({ data, updateData, onNext, onBack }) 
               </div>
             )}
           </div>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="priceRange">Product Price Range *</Label>
-          <Select value={data.priceRange} onValueChange={(value) => handleInputChange('priceRange', value)}>
-            <SelectTrigger className={errors.priceRange ? 'border-destructive' : ''}>
-              <SelectValue placeholder="Select price range" />
-            </SelectTrigger>
-            <SelectContent>
-              {priceRanges.map((range) => (
-                <SelectItem key={range} value={range}>
-                  PKR {getDisplayValue(range)}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.priceRange && (
-            <div className="error-message">
-              <AlertCircle className="w-4 h-4" />
-              {errors.priceRange}
-            </div>
-          )}
         </div>
 
         <div className="space-y-3">

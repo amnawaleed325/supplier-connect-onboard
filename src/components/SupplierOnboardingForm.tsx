@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Check, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -27,11 +27,10 @@ export interface FormData {
   // Step 2: Supplier Details
   supplierType: string;
   mainCategory: string;
-  secondaryCategory: string;
-  productCount: string;
-  stockPerProduct: string;
-  priceRange: string;
-  listingType: string;
+  secondaryCategory?: string;
+  productCount?: string;
+  stockPerProduct?: string;
+  listingType?: string;
   experience: string;
   hearAbout: string;
   sampleImage?: File;
@@ -76,7 +75,6 @@ const SupplierOnboardingForm = () => {
     secondaryCategory: '',
     productCount: '',
     stockPerProduct: '',
-    priceRange: '',
     listingType: '',
     experience: '',
     hearAbout: '',
@@ -86,6 +84,14 @@ const SupplierOnboardingForm = () => {
     ntnNumber: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Apply Nunito font globally
+  useEffect(() => {
+    document.body.style.fontFamily = 'Nunito, sans-serif';
+    return () => {
+      document.body.style.fontFamily = '';
+    };
+  }, []);
 
   const updateFormData = (data: Partial<FormData>) => {
     setFormData(prev => ({ ...prev, ...data }));
@@ -123,7 +129,6 @@ const SupplierOnboardingForm = () => {
         secondaryCategory: formData.secondaryCategory,
         productCount: parseInt(formData.productCount),
         stockPerProduct: parseInt(formData.stockPerProduct),
-        priceRange: formData.priceRange,
         listingType: formData.listingType,
         experience: formData.experience,
         hearAbout: formData.hearAbout

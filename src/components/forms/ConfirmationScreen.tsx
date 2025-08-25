@@ -81,7 +81,6 @@ const ConfirmationScreen: React.FC<Props> = ({ data, onEdit, onConfirm }) => {
               )}
               <div><span className="font-medium">Product Count:</span> {getDisplayValue(data.productCount)}</div>
               <div><span className="font-medium">Stock per Product:</span> {getDisplayValue(data.stockPerProduct)}</div>
-              <div><span className="font-medium">Price Range:</span> PKR {getDisplayValue(data.priceRange)}</div>
               <div><span className="font-medium">Listing Type:</span> {data.listingType}</div>
               <div><span className="font-medium">Experience:</span> {data.experience}</div>
               <div><span className="font-medium">Heard About Us:</span> {data.hearAbout}</div>

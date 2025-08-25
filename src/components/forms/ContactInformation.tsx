@@ -419,12 +419,13 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
                 placeholder="Nearby landmark"
                 className={errors.landmark ? 'border-destructive' : ''}
               />
-              {errors.landmark && (
-                <div className="error-message">
-                  <AlertCircle className="w-4 h-4" />
-                  {errors.landmark}
-                </div>
-              )}
+          <p className="text-sm text-muted-foreground mt-1">Jahan sy apka parcel pick kiya jaye ga</p>
+          {errors.landmark && (
+            <div className="error-message">
+              <AlertCircle className="w-4 h-4" />
+              {errors.landmark}
+            </div>
+          )}
             </div>
           </div>
         </div>
@@ -440,6 +441,7 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
             disabled={data.sameAsPickup}
             className={errors.returnAddress ? 'border-destructive' : ''}
           />
+          <p className="text-sm text-muted-foreground mt-1">Jahan apkay parcels return hongay</p>
           <div className="flex items-center space-x-2">
             <Checkbox
               id="sameAsPickup"
