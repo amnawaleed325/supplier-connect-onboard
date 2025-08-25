@@ -356,6 +356,7 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
         {/* Pickup Address Section */}
         <div className="space-y-4">
           <Label className="text-lg font-semibold">Pickup Address *</Label>
+          <p className="text-sm text-muted-foreground">Jahan sy apka parcel pick kiya jaye ga</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="shopNumber">Shop Number / House Number *</Label>
@@ -419,19 +420,19 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
                 placeholder="Nearby landmark"
                 className={errors.landmark ? 'border-destructive' : ''}
               />
-          <p className="text-sm text-muted-foreground mt-1">Jahan sy apka parcel pick kiya jaye ga</p>
-          {errors.landmark && (
-            <div className="error-message">
-              <AlertCircle className="w-4 h-4" />
-              {errors.landmark}
-            </div>
-          )}
+              {errors.landmark && (
+                <div className="error-message">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.landmark}
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="returnAddress">Return Address *</Label>
+          <p className="text-sm text-muted-foreground">Jahan apkay parcels return hongay</p>
           <Textarea
             id="returnAddress"
             value={data.sameAsPickup ? `${data.shopNumber || ''}, ${data.streetName || ''}, ${data.area || ''}, ${data.landmark || ''}`.replace(/^,+|,+$/g, '').replace(/,+/g, ', ') : data.returnAddress}
@@ -441,7 +442,6 @@ const ContactInformation: React.FC<Props> = ({ data, updateData, onNext }) => {
             disabled={data.sameAsPickup}
             className={errors.returnAddress ? 'border-destructive' : ''}
           />
-          <p className="text-sm text-muted-foreground mt-1">Jahan apkay parcels return hongay</p>
           <div className="flex items-center space-x-2">
             <Checkbox
               id="sameAsPickup"
