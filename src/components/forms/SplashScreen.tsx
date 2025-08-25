@@ -68,7 +68,7 @@ const SplashScreen: React.FC<Props> = ({ onStart }) => {
             Become a Markaz Seller 🚀
           </h1>
           <p className="text-lg md:text-xl lg:text-2xl opacity-90 mb-8 md:mb-12 leading-relaxed">
-            Sell your products to thousands of customers with ease.
+            Register now in less than 5 minutes and start selling
           </p>
           
           {/* Sign Up Form */}
