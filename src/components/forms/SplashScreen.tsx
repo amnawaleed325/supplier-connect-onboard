@@ -53,57 +53,73 @@ const SplashScreen: React.FC<Props> = ({ onStart }) => {
             `)}')`
          }}>
       
-      {/* Lady PNG - positioned left side */}
-      <div className="w-full md:w-1/2 h-64 md:h-screen relative order-2 md:order-1">
-        <img 
-          src="/lovable-uploads/9b4732a0-1f01-491f-884d-51c857f6c82c.png"
-          alt="Markaz representative" 
-          className="w-full h-full object-cover object-center"
-        />
-      </div>
-      
-      {/* Right side content - Sign Up Form */}
-      <div className="w-full md:w-1/2 min-h-screen flex items-center justify-center relative z-10 px-4 md:pr-16 py-8 order-1 md:order-2">
-        <div className="text-center text-white px-4 md:px-8 max-w-lg w-full">
+      {/* Left side - Marketing Content */}
+      <div className="w-full md:w-1/2 min-h-screen flex flex-col items-center justify-center relative z-10 px-6 md:px-12 py-8">
+        <div className="text-center text-white max-w-xl w-full space-y-8">
           {/* Main Headline */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-            Join the Fastest-Growing Selling Network in Pakistan!
-          </h1>
-          
-          {/* Subheadline */}
-          <p className="text-base md:text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
-            List your products today reach thousands of active resellers instantly.
-          </p>
+          <div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+              Join the Fastest-Growing Selling Network in Pakistan!
+            </h1>
+            
+            <p className="text-base md:text-lg lg:text-xl opacity-90 leading-relaxed">
+              Register and list your products to instantly reach thousands of active resellers.
+            </p>
+          </div>
           
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-              <Download className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2 text-white" />
-              <div className="text-2xl md:text-3xl font-bold">5M+</div>
-              <div className="text-xs md:text-sm opacity-80">App Downloads</div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <Download className="w-8 h-8 md:w-10 md:h-10 mx-auto mb-3 text-white" />
+              <div className="text-3xl md:text-4xl font-bold">5M+</div>
+              <div className="text-sm md:text-base opacity-80 mt-1">App Downloads</div>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-              <Users className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2 text-white" />
-              <div className="text-2xl md:text-3xl font-bold">350K+</div>
-              <div className="text-xs md:text-sm opacity-80">Resellers</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <Users className="w-8 h-8 md:w-10 md:h-10 mx-auto mb-3 text-white" />
+              <div className="text-3xl md:text-4xl font-bold">350K+</div>
+              <div className="text-sm md:text-base opacity-80 mt-1">Resellers</div>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-              <ShoppingCart className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2 text-white" />
-              <div className="text-2xl md:text-3xl font-bold">4M+</div>
-              <div className="text-xs md:text-sm opacity-80">Orders Placed</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <ShoppingCart className="w-8 h-8 md:w-10 md:h-10 mx-auto mb-3 text-white" />
+              <div className="text-3xl md:text-4xl font-bold">4M+</div>
+              <div className="text-sm md:text-base opacity-80 mt-1">Orders Placed</div>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-              <TrendingUp className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2 text-white" />
-              <div className="text-2xl md:text-3xl font-bold">1B+</div>
-              <div className="text-xs md:text-sm opacity-80">Reseller Earnings</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <TrendingUp className="w-8 h-8 md:w-10 md:h-10 mx-auto mb-3 text-white" />
+              <div className="text-3xl md:text-4xl font-bold">1B+</div>
+              <div className="text-sm md:text-base opacity-80 mt-1">Reseller Earnings</div>
             </div>
+          </div>
+
+          {/* Picture */}
+          <div className="mt-8 rounded-2xl overflow-hidden border-4 border-white/20">
+            <img 
+              src="/lovable-uploads/9b4732a0-1f01-491f-884d-51c857f6c82c.png"
+              alt="Markaz representative" 
+              className="w-full h-64 md:h-80 object-cover object-center"
+            />
+          </div>
+        </div>
+      </div>
+      
+      {/* Right side - Sign Up Form */}
+      <div className="w-full md:w-1/2 min-h-screen flex items-center justify-center relative z-10 px-6 md:px-12 py-8 bg-white/5 backdrop-blur-sm">
+        <div className="text-center text-white max-w-md w-full space-y-6">
+          {/* Form Header */}
+          <div className="mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+              Become a Markaz Supplier
+            </h2>
+            <p className="text-sm md:text-base opacity-90">
+              Quick, guided registration in under 5 minutes - start selling in minutes!
+            </p>
           </div>
           
           {/* Sign Up Form */}
-          <div className="space-y-4 mb-6">
+          <div className="space-y-4">
             <div className="text-left">
               <Label htmlFor="email" className="text-white text-sm md:text-base font-medium mb-2 block">
                 Email Address
@@ -150,18 +166,13 @@ const SplashScreen: React.FC<Props> = ({ onStart }) => {
           <Button 
             onClick={handleSignUp}
             size="lg"
-            className="w-full bg-white text-[#1c6e9d] hover:bg-white/90 px-8 py-6 text-lg md:text-xl font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            className="w-full bg-white text-[#1c6e9d] hover:bg-white/90 px-8 py-6 text-lg md:text-xl font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 mt-6"
           >
-            Become a Markaz Seller
+            Sign Up
           </Button>
           
-          {/* CTA Tagline */}
-          <p className="text-sm md:text-base opacity-90 mt-4 mb-6">
-            Quick, guided registration in less than 5 minutes, start selling in minutes!
-          </p>
-          
           {/* Footer Benefits */}
-          <div className="flex flex-wrap justify-center gap-3 md:gap-6 text-xs md:text-sm opacity-80">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-xs md:text-sm opacity-90 mt-6 pt-6 border-t border-white/20">
             <span>✓ Faster approval</span>
             <span>✓ Zero setup cost</span>
             <span>✓ Dedicated support</span>
